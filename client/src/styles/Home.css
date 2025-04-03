@@ -1,0 +1,28 @@
+.home {
+    margin: 3rem;
+} 
+.title1{
+    font-size: 3rem;
+    color: white;
+}
+.title2{
+    font-size: 6rem;
+    font-family: 'Manuka Condensed', sans-serif;
+    font-weight: bold;
+    color: #F4004A;
+}
+
+button {
+    all: unset;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    color:#98C61B;
+    background-color: #1E1E1E;
+    border:0.1rem solid #98C61B;
+}
+
+button:hover {
+    background-color: #98C61B;
+    color:#1E1E1E;
+}

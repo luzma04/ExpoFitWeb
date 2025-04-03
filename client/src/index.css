@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/src/assets/fonts/ClashDisplay-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/src/assets/fonts/ClashDisplay-Light.otf') format('opentype');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/src/assets/fonts/ClashDisplay-Semibold.otf') format('opentype');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Manuka Condensed';
+  src: url('/src/assets/fonts/ManukaCondensed-Regular.ttf') format('truetype');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Manuka Condensed';
+  src: url('/src/assets/fonts/ManukaCondensed-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  background-color: #1E1E1E;
+  font-family: 'Clash Display', sans-serif;
+}
