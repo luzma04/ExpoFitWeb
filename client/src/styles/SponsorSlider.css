@@ -1,0 +1,31 @@
+.slider {
+    width: 100%;
+    overflow: hidden;
+    background-color: #98C61B;
+    z-index: 1;
+  }
+  
+.slider .slider-track {
+    display: flex;
+    width: calc(10rem * 14);
+    animation: scroll 40s linear infinite;
+}
+  
+.slider .slide {
+    width: 10rem;
+    flex-shrink: 0;
+}
+  
+.slider .slide img {
+    width: 100%;
+    display: block;
+}
+  
+@keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-10rem * 7));
+    }
+}

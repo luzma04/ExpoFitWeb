@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 @font-face {
   font-family: 'Clash Display';
   src: url('/src/assets/fonts/ClashDisplay-Regular.otf') format('opentype');
@@ -31,8 +33,5 @@
 
 * {
   box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  background-color: #1E1E1E;
   font-family: 'Clash Display', sans-serif;
 }

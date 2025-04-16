@@ -1,15 +1,44 @@
-.home {
+.home .title-section {
+    position: relative;
+    height: calc(90vh - 4rem);
+    background-image: url('../assets/images/home-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.home .title-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(30, 30, 30, 1), rgba(0, 0, 0, 0));
+    z-index: 1;
+}
+
+.title-section .title-card {
     margin: 3rem;
-} 
-.title1{
+    position: relative;
+    z-index: 2;
+}
+
+.title-section .title-card p {
     font-size: 3rem;
     color: white;
 }
-.title2{
+
+.title-section .title-card h1 {
     font-size: 6rem;
     font-family: 'Manuka Condensed', sans-serif;
     font-weight: bold;
     color: #F4004A;
+    line-height: 1;
 }
 
 button {
@@ -26,3 +55,36 @@ button:hover {
     background-color: #98C61B;
     color:#1E1E1E;
 }
+
+.countdown-section{
+    height: calc(90vh - 50px);
+    background-image: url('../assets/images/red-background-texture.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.countdown-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+}
+
+.countdown-card h2 {
+    font-size: 6rem;
+    font-weight: bold;
+    font-family: 'Manuka Condensed', sans-serif;
+}
+
+.countdown-card p{
+    padding: 0.4rem;
+    background-color: #98C61B;
+    font-weight: bold;
+    letter-spacing: 0.2rem;
+}
+
