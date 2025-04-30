@@ -23,7 +23,7 @@
 }
 
 .title-section .title-card {
-    margin: 3rem;
+    margin: 2rem;
     position: relative;
     z-index: 2;
 }
@@ -31,6 +31,12 @@
 .title-section .title-card p {
     font-size: 3rem;
     color: white;
+}
+.title-section .title-card .subtitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    padding-bottom: 1rem;
 }
 
 .title-section .title-card h1 {
@@ -41,7 +47,7 @@
     line-height: 1;
 }
 
-button {
+.home button {
     all: unset;
     cursor: pointer;
     padding: 0.5rem;
@@ -51,7 +57,7 @@ button {
     border:0.1rem solid #98C61B;
 }
 
-button:hover {
+.home button:hover {
     background-color: #98C61B;
     color:#1E1E1E;
 }

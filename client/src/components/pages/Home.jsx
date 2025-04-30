@@ -1,6 +1,7 @@
 import React from 'react'
 import '../../styles/Home.css'
 import Timer from '../Timer'
+import Stats from '../Stats'
 import SponsorSlider from '../SponsorSlider'
 import ImageSlider from '../ImageSlider'
 import sliderPhoto1 from '../../assets/images/slider-photo1.jpg'
@@ -22,6 +23,7 @@ const Home = () => {
         <div className='title-card'>
           <p>4ª EXPO</p>
           <h1>FITNESS Y SALUD<br/>NEA CHACO</h1>
+          <p className='subtitle'>11° COPA NATURAL SHOP</p>
           <button>¡Formá parte del evento!</button>
         </div>
       </div>
@@ -51,6 +53,7 @@ const Home = () => {
             <ImageSlider slides={photoSlides} />
           </div>
         </div>
+        <Stats/>
       </div>
 
       <div
@@ -69,7 +72,7 @@ const Home = () => {
         </div>
         
         <div className="w-full md:w-1/2 p-4 flex flex-col gap-4">
-          <p className="font-['Manuka Condensed'] text-3xl md:text-5xl font-bold text-[#1E1E1E] text-center md:text-left leading-tight">
+          <p className="text-3xl md:text-5xl font-bold text-[#1E1E1E] text-center md:text-left leading-tight">
             ¡TE ESPERAMOS EN EL EVENTO!
           </p>
           <h4 className="bg-[#1E1E1E] text-white text-xl md:text-2xl p-4 text-center md:text-left rounded-xl shadow">

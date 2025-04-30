@@ -24,22 +24,27 @@ const Footer = () => {
                     Secciones</li>
                 <ul className="list-none space-y-1 font-medium">
                     <li>
-                    <NavLink to="/about" className="hover:text-[#98C61B] transition-colors duration-200">
-                        El Evento
+                    <NavLink to="/expo" className="hover:text-[#98C61B] transition-colors duration-200">
+                        Expo
                     </NavLink>
                     </li>
                     <li>
-                    <NavLink to="/cronograma" className="hover:text-[#98C61B] transition-colors duration-200">
-                        Cronograma
+                    <NavLink to="/copa" className="hover:text-[#98C61B] transition-colors duration-200">
+                        Copa
                     </NavLink>
                     </li>
                     <li>
-                    <NavLink to="/2" className="hover:text-[#98C61B] transition-colors duration-200">
-                        F&Qs
+                    <NavLink to="/programa" className="hover:text-[#98C61B] transition-colors duration-200">
+                        Programa
                     </NavLink>
                     </li>
                     <li>
-                    <NavLink to="/3" className="hover:text-[#98C61B] transition-colors duration-200">
+                    <NavLink to="/galeria" className="hover:text-[#98C61B] transition-colors duration-200">
+                        Galería
+                    </NavLink>
+                    </li>
+                    <li>
+                    <NavLink to="/participa" className="hover:text-[#98C61B] transition-colors duration-200">
                         Participá
                     </NavLink>
                     </li>

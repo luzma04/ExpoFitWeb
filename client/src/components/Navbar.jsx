@@ -15,16 +15,19 @@ const Navbar = () => {
         </div>
         <ul className={menuOpen ? "open" : ""}>
             <li>
-                <NavLink to="/about">El Evento</NavLink>
+                <NavLink to="/expo">Expo</NavLink>
             </li>
             <li>
-                <NavLink to="/cronograma">Cronograma</NavLink>
+                <NavLink to="/copa">Copa</NavLink>
             </li>
             <li>
-                <NavLink to="/2">F&Qs</NavLink>
+                <NavLink to="/programa">Programa</NavLink>
             </li>
             <li>
-                <NavLink to="/3">Participá</NavLink>
+                <NavLink to="/galeria">Galería</NavLink>
+            </li>
+            <li>
+                <NavLink to="/participa">Participá</NavLink>
             </li>
         </ul>
     </nav>
