@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2';
+import { db } from "../firebase";
+import { collection, addDoc } from "firebase/firestore";
 import { initMercadoPago, Wallet} from '@mercadopago/sdk-react';
 import axios from 'axios';
 
@@ -46,9 +49,48 @@ const Form = ({ categoriaDefault = 'Asistente', editable, onSubmit }) => {
     setFormData({...formData, [e.target.name]: e.target.value});
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit(formData);
+    try {
+      // Agregar los datos del formulario a Firestore
+      const docRef = await addDoc(collection(db, "inscripciones"), {
+        nombre: formData.nombre,
+        correo: formData.correo,
+        telefono: formData.telefono,
+        ciudad: formData.ciudad,
+        provincia: formData.provincia,
+        categoria: formData.categoria,
+        fecha: new Date(),
+      });
+
+      console.log("Documento agregado con ID:", docRef.id);
+
+      Swal.fire({
+        title: '¡Éxito!',
+        text: 'Tus datos fueron enviados correctamente. Espera unos segundos para proceder al pago.',
+        icon: 'success',
+        confirmButtonText: '¡Entendido!',
+      }).then(() => {
+        handleBuy();
+      });
+
+      setFormData({
+        nombre: '',
+        correo: '',
+        telefono: '',
+        ciudad: '',
+        provincia: '',
+        categoria: categoriaDefault,
+      });
+    } catch (e) {
+      console.error("Error agregando documento:", e);
+      Swal.fire({
+        title: 'Error',
+        text: 'Hubo un problema al enviar tus datos. Por favor, inténtalo de nuevo.',
+        icon: 'error',
+        confirmButtonText: 'Cerrar',
+      });
+    }
   };
 
   return (
@@ -147,7 +189,6 @@ const Form = ({ categoriaDefault = 'Asistente', editable, onSubmit }) => {
         <button
           type="submit"
           className="bg-[#F4004A] hover:bg-[#d1003f] text-white font-semibold px-6 py-3 rounded-full transition"
-          onClick={handleBuy}
         >
           Enviar
         </button>
@@ -156,5 +197,6 @@ const Form = ({ categoriaDefault = 'Asistente', editable, onSubmit }) => {
     </form>
   );
 };
+
 
 export default Form;
