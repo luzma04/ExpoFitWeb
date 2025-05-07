@@ -1,41 +1,160 @@
-import { useState } from "react";
+import React, { useState } from 'react';
+import { initMercadoPago, Wallet} from '@mercadopago/sdk-react';
+import axios from 'axios';
 
-const Form = ({fields, onSubmit}) => {
-    const [formData, setFormData] = useState({});
+const Form = ({ categoriaDefault = 'Asistente', editable, onSubmit }) => {
+  const [preferenceId, setPreferenceId] = useState(null);
 
-    const handleChange = (e) => {
-        setFormData({...formData, [e.target.name]: e.target.value});
-    };
+  const publicKey = import.meta.env.VITE_MP_PUBLIC_KEY;
+  //Inicializacion de mp
+  initMercadoPago(publicKey, {
+    locale: "es-AR"
+  });
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        onSubmit(formData)
-    };
+  //Crear preferencia que se va a enviar al server
+  const createPreference = async() => {
+    try {
+      const response = await axios.post("http://localhost:3000/create_preference",{
+        title: "servicio x",
+        quantity: 1,
+        price: 100,
+      });
+      const { id } = response.data;
+      return id;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-    return (
-        <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md mx-auto">
-            {fields.map(({name, label, type}) => (
-                <div key={name}>
-                <label className="block mb-1 font-medium text-[#1E1E1E]">{label}</label>
-                <input
-                  type={type}
-                  name={name}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 rounded bg-gray-200"
-                />
-              </div>
-            ))
-            }
-            <div className="flex justify-center">
-                <button
-                type="submit"
-                className="bg-[#F4004A] text-white px-4 py-2 rounded"
-                >
-                enviar
-                </button>
-            </div>
-        </form>
-    )
+  const handleBuy = async () => {
+    const id = await createPreference();
+    if (id) {
+      setPreferenceId(id);
+    }
+  }
+
+  const [formData, setFormData] = useState({
+    nombre: '',
+    correo: '',
+    telefono: '',
+    ciudad: '',
+    provincia: '',
+    categoria: categoriaDefault,
+  });
+
+  const handleChange = (e) => {
+    setFormData({...formData, [e.target.name]: e.target.value});
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(formData);
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="w-full max-w-xl mx-auto bg-white shadow-xl rounded-2xl p-8 space-y-6"
+    >
+      <h2 className="text-2xl font-bold text-center text-[#1E1E1E] mb-2">Formulario de inscripción</h2>
+
+      {/* Nombre completo */}
+      <div>
+        <label className="block mb-1 text-sm font-medium text-gray-700">Nombre y Apellido</label>
+        <input
+          type="text"
+          name="nombre"
+          value={formData.nombre}
+          onChange={handleChange}
+          placeholder="Ej: Juan Pérez"
+          className="w-full px-4 py-2 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#F4004A] transition"
+          required
+        />
+      </div>
+
+      {/* Correo */}
+      <div>
+        <label className="block mb-1 text-sm font-medium text-gray-700">Correo electrónico</label>
+        <input
+          type="email"
+          name="correo"
+          value={formData.correo}
+          onChange={handleChange}
+          placeholder="Ej: juan@mail.com"
+          className="w-full px-4 py-2 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#F4004A] transition"
+          required
+        />
+      </div>
+
+      {/* Ciudad y Provincia */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label className="block mb-1 text-sm font-medium text-gray-700">Ciudad</label>
+          <input
+            type="text"
+            name="ciudad"
+            value={formData.ciudad}
+            onChange={handleChange}
+            className="w-full px-4 py-2 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#F4004A] transition"
+          />
+        </div>
+        <div>
+          <label className="block mb-1 text-sm font-medium text-gray-700">Provincia</label>
+          <input
+            type="text"
+            name="provincia"
+            value={formData.provincia}
+            onChange={handleChange}
+            className="w-full px-4 py-2 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#F4004A] transition"
+          />
+        </div>
+      </div>
+
+      {/* Teléfono y Categoría */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label className="block mb-1 text-sm font-medium text-gray-700">Teléfono</label>
+          <input
+            type="tel"
+            name="telefono"
+            value={formData.telefono}
+            onChange={handleChange}
+            placeholder="Ej: 1123456789"
+            className="w-full px-4 py-2 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#F4004A] transition"
+          />
+        </div>
+
+        <div>
+          <label className="block mb-1 text-sm font-medium text-gray-700">Categoría</label>
+          <select
+            name="categoria"
+            value={formData.categoria}
+            onChange={handleChange}
+            disabled={!editable}
+            className="w-full px-4 py-2 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#F4004A] transition"
+          >
+            <option value="Sponsor">Sponsor</option>
+            <option value="Expositor">Expositor</option>
+            <option value="Asistente Capacitacion">Asistente (Capacitación)</option>
+            <option value="Competidor">Competidor</option>
+            <option value="Asistente Copa">Asistente (Copa)</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Botón */}
+      <div className="flex flex-col items-center justify-center pt-2">
+        <button
+          type="submit"
+          className="bg-[#F4004A] hover:bg-[#d1003f] text-white font-semibold px-6 py-3 rounded-full transition"
+          onClick={handleBuy}
+        >
+          Enviar
+        </button>
+        {preferenceId && <Wallet initialization={{ preferenceId: preferenceId}}/>}
+      </div>
+    </form>
+  );
 };
 
 export default Form;

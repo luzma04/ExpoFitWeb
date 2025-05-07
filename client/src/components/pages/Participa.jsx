@@ -140,11 +140,8 @@ export default function Participa() {
               <h3 className='uppercase font-bold text-[#98C61B] text-x1 m-3'>Reservá tu stand!</h3>
             </div>
             <Form
-              fields={[
-                { name: 'nombre', label: 'Nombre', type: 'text' },
-                { name: 'email', label: 'Email', type: 'email' },
-                { name: 'mensaje', label: 'Mensaje', type: 'text' },
-              ]}
+              categoriaDefault='Expositor'
+              editable={false}
               onSubmit={(data) => console.log(data)}
             />
           </div>
@@ -187,25 +184,49 @@ export default function Participa() {
               </li>
             </ul>
           </div>
+          <Form
+              categoriaDefault='Sponsor'
+              editable={false}
+              onSubmit={(data) => console.log(data)}
+          />
         </div>
       )
     },
     {
       title: 'Asistir a las capacitaciones',
       content: (
-        <Form
-          fields={[
-            { name: 'nombre', label: 'Nombre', type: 'text' },
-            { name: 'email', label: 'Email', type: 'email' },
-            { name: 'mensaje', label: 'Mensaje', type: 'text' },
-          ]}
-          onSubmit={(data) => console.log(data)}
-        />
+        <div className="flex flex-col items-center">
+          <Form
+            categoriaDefault="Asistente Capacitacion"
+            editable={false}
+            onSubmit={(data) => console.log(data)}
+          />
+          <h3 className="text-xl font-semibold text-[#1E1E1E] mt-8 text-center">
+            ¡Explora el programa y las capacitaciones que tenemos para vos!
+          </h3>
+          <button className="bg-[#98C61B] text-white m-2 px-4 py-2 rounded hover:text-[#1E1E1E]">
+            Ver capacitaciones
+          </button>
+        </div>
       )
     },
     {
       title: 'Participar en la Copa Natural Shop',
-      content: 'Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat.'
+      content: (
+        <div className="">
+          <h3 className="text-2xl font-semibold text-[#98C61B]">
+            Sumate a la 11° COPA NATURAL SHOP
+          </h3>
+          <p className="text-[#1E1E1E] text-lg mb-4">
+            Ya sea como atleta competidor o como asistente al evento, tenemos un lugar para vos!
+          </p>
+          <Form
+            categoriaDefault="Competidor"
+            editable={true}
+            onSubmit={(data) => console.log(data)}
+          />
+        </div>
+      )
     }
   ];
 

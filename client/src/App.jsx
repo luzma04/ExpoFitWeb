@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -7,8 +6,6 @@ import {Home, Expo, Copa, Programa, Participa} from './components/pages'
 
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <div className='App'>
@@ -22,7 +19,6 @@ function App() {
         </Routes>
         <Footer/>
       </div>
-
     </>
   )
 }
