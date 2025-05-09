@@ -17,10 +17,11 @@ const Form = ({ categoriaDefault = 'Asistente', editable, onSubmit }) => {
   //Crear preferencia que se va a enviar al server
   const createPreference = async() => {
     try {
+      const {title, price} = getPreferenceDataByCategory(formData.categoria);
       const response = await axios.post("http://localhost:3000/create_preference",{
-        title: "servicio x",
-        quantity: 1,
-        price: 100,
+          title: title,
+          quantity: Number(1),
+          price: Number(price),
       });
       const { id } = response.data;
       return id;
@@ -28,6 +29,23 @@ const Form = ({ categoriaDefault = 'Asistente', editable, onSubmit }) => {
       console.log(error);
     }
   }
+
+  const getPreferenceDataByCategory = ((categoria)=>{
+    switch(categoria) {
+      case "Expositor":
+        return {title: "Reserva de Stand", price: 500};
+      case "Sponsor":
+        return {title: "Inscripción como Sponsor", price: 1000};
+      case "Asistente Capacitacion":
+        return {title: "Inscripción a capacitación", price: 100};
+      case "Competidor":
+        return {title: "Reserva para competir Copa Natural Shop", price: 400};
+      case "Asistente Copa":
+        return {title: "Entrada para Copa Natural Shop", price: 50};
+      default:
+        return {title: "Preinscripción", price: 0};
+    }
+  });
 
   const handleBuy = async () => {
     const id = await createPreference();
@@ -61,6 +79,20 @@ const Form = ({ categoriaDefault = 'Asistente', editable, onSubmit }) => {
         provincia: formData.provincia,
         categoria: formData.categoria,
         fecha: new Date(),
+      });
+      await fetch("https://sheetdb.io/api/v1/0ekho4cx477tl", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          data: {
+            nombre: formData.nombre,
+            correo: formData.correo,
+            telefono: formData.telefono,
+            ciudad: formData.ciudad,
+            provincia: formData.provincia,
+            categoria: formData.categoria,
+            fecha: new Date().toISOString()
+          }}),
       });
 
       console.log("Documento agregado con ID:", docRef.id);
