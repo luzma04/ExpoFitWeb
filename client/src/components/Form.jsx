@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
+import emailjs from "@emailjs/browser";
 import { db } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { initMercadoPago, Wallet} from '@mercadopago/sdk-react';
@@ -18,7 +19,7 @@ const Form = ({ categoriaDefault = 'Asistente', editable, onSubmit }) => {
   const createPreference = async() => {
     try {
       const {title, price} = getPreferenceDataByCategory(formData.categoria);
-      const response = await axios.post("http://localhost:3000/create_preference",{
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/create_preference`,{
           title: title,
           quantity: Number(1),
           price: Number(price),
@@ -69,6 +70,15 @@ const Form = ({ categoriaDefault = 'Asistente', editable, onSubmit }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    Swal.fire({
+    title: 'Enviando tus datos...',
+    text: 'Por favor, espera un momento',
+    allowOutsideClick: false,
+    didOpen: () => {
+      Swal.showLoading();
+    }
+    });
     try {
       // Agregar los datos del formulario a Firestore
       const docRef = await addDoc(collection(db, "inscripciones"), {
@@ -91,7 +101,7 @@ const Form = ({ categoriaDefault = 'Asistente', editable, onSubmit }) => {
             ciudad: formData.ciudad,
             provincia: formData.provincia,
             categoria: formData.categoria,
-            fecha: new Date().toISOString()
+            fecha: new Date().toLocaleString('es-AR')
           }}),
       });
 
@@ -105,6 +115,8 @@ const Form = ({ categoriaDefault = 'Asistente', editable, onSubmit }) => {
       }).then(() => {
         handleBuy();
       });
+
+      await sendEmail(formData);
 
       setFormData({
         nombre: '',
@@ -122,6 +134,22 @@ const Form = ({ categoriaDefault = 'Asistente', editable, onSubmit }) => {
         icon: 'error',
         confirmButtonText: 'Cerrar',
       });
+    }
+  };
+
+  const sendEmail = async (formData) => {
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          correo: formData.correo,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+      console.log("Email enviado correctamente");
+    } catch (error) {
+      console.error("Error al enviar email:", error);
     }
   };
 

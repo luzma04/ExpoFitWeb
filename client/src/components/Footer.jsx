@@ -39,11 +39,6 @@ const Footer = () => {
                     </NavLink>
                     </li>
                     <li>
-                    <NavLink to="/galeria" className="hover:text-[#98C61B] transition-colors duration-200">
-                        Galería
-                    </NavLink>
-                    </li>
-                    <li>
                     <NavLink to="/participa" className="hover:text-[#98C61B] transition-colors duration-200">
                         Participá
                     </NavLink>

@@ -10,7 +10,7 @@ function Expo() {
         {/* Banner */}
         <div
             className="min-h-[40vh] bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center px-4 text-center"
-            style={{ backgroundImage: "url('/src/assets/images/black-texture-banner.jpg')" }}
+            style={{ backgroundImage: "url('/images/black-texture-banner.webp')" }}
         >
             <p className="text-white text-4xl sm:text-4xl md:text-4xl lg:text-5xl">
             4ª EXPO
@@ -43,7 +43,7 @@ function Expo() {
         <section className="min-h-[70vh] bg-white flex flex-col justify-center items-center p-4">
             <div
                 className="w-[90%] max-w-6xl bg-cover bg-center bg-no-repeat rounded-3xl shadow-lg mx-auto text-white p-10 space-y-6"
-                style={{ backgroundImage: "url('/src/assets/images/red-texture-square.jpg')" }}
+                style={{ backgroundImage: "url('/images/red-texture-square.jpg')" }}
             >
                 <h2 className="text-3xl font-bold text-center mb-6">
                 ¿POR QUÉ PARTICIPAR?

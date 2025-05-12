@@ -10,7 +10,7 @@ export default function Copa() {
       <section className="relative">
         <div
           className="min-h-[40vh] bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center px-4 text-center"
-          style={{ backgroundImage: "url('/src/assets/images/black-texture-banner.jpg')" }}
+          style={{ backgroundImage: "url('/images/black-texture-banner.jpg')" }}
         >
           <p className="text-white text-4xl lg:text-5xl">11° COPA</p>
           <h1

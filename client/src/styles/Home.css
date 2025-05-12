@@ -1,7 +1,7 @@
 .home .title-section {
     position: relative;
     height: calc(90vh - 4rem);
-    background-image: url('../assets/images/home-background.jpg');
+    background-image: url('../assets/images/home-background.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

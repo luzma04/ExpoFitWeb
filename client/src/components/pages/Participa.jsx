@@ -236,7 +236,7 @@ export default function Participa() {
         {/* Banner */}
         <div
             className="min-h-[40vh] bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center px-4 text-center"
-            style={{ backgroundImage: "url('/src/assets/images/white-texture-banner.jpg')" }}
+            style={{ backgroundImage: "url('/images/white-texture-banner.jpg')" }}
         >
             <p className="text-[#1E1E1E] text-4xl sm:text-4xl md:text-4xl lg:text-5xl">
             INSCRIPCIONES
