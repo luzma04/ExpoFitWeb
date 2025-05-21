@@ -53,17 +53,17 @@ const Footer = () => {
                 <div className="flex space-x-6 !mt-2">
                     <a
                         className="text-white hover:text-[#98C61B] transform hover:scale-150 
-                        transition-all duration-150 ease-in-out !mr-4" href="">
+                        transition-all duration-150 ease-in-out !mr-4" href="https://www.instagram.com/expoycopa.naturalshop?igsh=Y3dxOXFvNTFiNmRz">
                         <FaInstagram />
                     </a>
                     <a
                         className="text-white hover:text-[#98C61B] transform hover:scale-150
-                        transition-all duration-150 ease-in-out !mr-4" href="">
+                        transition-all duration-150 ease-in-out !mr-4" href="https://www.facebook.com/share/16dVGKqu2i/">
                         <FaFacebookF />
                     </a>
                     <a
                         className="text-white hover:text-[#98C61B] transform hover:scale-150
-                        transition-all duration-150 ease-in-out !mr-4" href="">
+                        transition-all duration-150 ease-in-out !mr-4" href="https://wa.me/5493625437602?text=Hola+Expo+Fitness+2025">
                         <FaWhatsapp />
                     </a>
                 </div>
