@@ -156,7 +156,7 @@ const Form = ({ categoriaDefault = 'Asistente', editable, onSubmit }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full max-w-xl mx-auto bg-white shadow-xl rounded-2xl p-8 space-y-6"
+      className= "w-full max-w-xl mx-auto bg-white shadow-xl rounded-2xl px-1 py-8 sm:px-6 space-y-6"
     >
       <h2 className="text-2xl font-bold text-center text-[#1E1E1E] mb-2">Formulario de inscripción</h2>
 

@@ -9,10 +9,12 @@ function ImageSlider({ slides }) {
   
     return (
       <div className="image-slider flex flex-col justify-center items-center w-full h-full min-h-[300px]">
-        <div
-          className="w-full h-[300px] md:h-full bg-center bg-cover rounded-2xl"
-          style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
-        ></div>
+        <img
+          src={slides[currentIndex].url}
+          alt={`Slide ${currentIndex + 1}`}
+          loading="lazy"
+          className="w-full h-[300px] md:h-full object-cover rounded-2xl"
+        />
         <div className="flex justify-center mt-4">
           {slides.map((_, slideIndex) => (
             <div

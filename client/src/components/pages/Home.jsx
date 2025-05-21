@@ -63,7 +63,7 @@ const Home = () => {
 
       <div
         className="min-h-[90vh] bg-cover bg-center bg-no-repeat flex flex-col md:flex-row justify-center items-center gap-8 p-8"
-        style={{ backgroundImage: "url('/src/assets/images/white-background-texture.jpg')" }}
+        style={{ backgroundImage: "url('/images/black-texture-banner.webp')" }}
       >
         <div className="w-full md:w-1/2 p-4 bg-[#F4004A]/90 rounded-[2rem] shadow-lg">
           <iframe

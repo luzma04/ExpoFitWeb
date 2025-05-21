@@ -16,23 +16,23 @@ const actividadesMock = [
     nombre: 'Pesaje',
     inicio: '2025-06-14T13:30:00',
     fin: '2025-06-14T17:00:00',
-    tipo: 'Control',
+    tipo: 'Copa',
     lugar: 'Sala 2',
     descripcion: 'Charla para competidores'
   },
   {
-    nombre: 'Capacitaciones',
+    nombre: 'Charlas',
     inicio: '2025-06-14T09:00:00',
     fin: '2025-06-14T18:00:00',
-    tipo: 'Capacitaciones',
+    tipo: 'Capacitación',
     lugar: 'Escenario Principal',
     descripcion: 'Bienvenida oficial'
   },
   {
     nombre: 'Masterclass',
     inicio: '2025-06-14T10:00:00',
-    fin: '2025-06-14T22:00:00',
-    tipo: 'Capacitaciones',
+    fin: '2025-06-14T20:00:00',
+    tipo: 'Capacitación',
     lugar: 'Escenario Principal',
     descripcion: 'Bienvenida oficial'
   },
@@ -40,20 +40,65 @@ const actividadesMock = [
     nombre: 'Torneo push pull',
     inicio: '2025-06-14T10:00:00',
     fin: '2025-06-14T11:00:00',
-    tipo: 'Capacitaciones',
+    tipo: 'Capacitación',
     lugar: 'Escenario Principal',
     descripcion: 'Bienvenida oficial'
   },
+  {
+    nombre: 'Competencias Funcionales',
+    inicio: '2025-06-15T09:00:00',
+    fin: '2025-06-15T13:00:00',
+    tipo: 'Actividad Física',
+    lugar: 'Pista Central',
+    descripcion: 'Competencia de resistencia y fuerza funcional.'
+  },
+  {
+    nombre: 'Clase de Zumba',
+    inicio: '2025-06-15T10:30:00',
+    fin: '2025-06-15T11:30:00',
+    tipo: 'Actividad Física',
+    lugar: 'Escenario Principal',
+    descripcion: 'Clase abierta de Zumba para todos los niveles.'
+  },
+  {
+    nombre: 'Nutrición Deportiva',
+    inicio: '2025-06-15T12:00:00',
+    fin: '2025-06-15T13:30:00',
+    tipo: 'Capacitación',
+    lugar: 'Sala 1',
+    descripcion: 'Charla sobre alimentación y suplementación.'
+  },
+  {
+    nombre: 'Clase de Yoga',
+    inicio: '2025-06-15T14:00:00',
+    fin: '2025-06-15T15:30:00',
+    tipo: 'Actividad Física',
+    lugar: 'Zona Verde',
+    descripcion: 'Yoga para la recuperación post entrenamiento.'
+  },
+  {
+    nombre: 'Cierre del Evento',
+    inicio: '2025-06-15T18:00:00',
+    fin: '2025-06-15T20:00:00',
+    tipo: 'Ceremonia',
+    lugar: 'Escenario Principal',
+    descripcion: 'Entrega de reconocimientos y cierre oficial de la Expo.'
+  }
 ];
 
 const horas = Array.from({ length: 13 }, (_, i) => 8 + i);
 
 export default function Schedule() {
-  const [fechaSeleccionada, setFechaSeleccionada] = useState("2025-06-15");
+  const [fechaSeleccionada, setFechaSeleccionada] = useState("2025-06-14");
+  const [selectedEventType, setSelectedEventType] = useState("Mostrar todo");
 
-  const actividadesDelDia = actividadesMock.filter(
-    (act) => dayjs(act.inicio).format("YYYY-MM-DD") === fechaSeleccionada
-  );
+  const tiposDeEvento = ["Mostrar todo", ...new Set(actividadesMock.map((a) => a.tipo))];
+
+  const actividadesDelDia = actividadesMock.filter((act) => {
+    const esMismaFecha = dayjs(act.inicio).format("YYYY-MM-DD") === fechaSeleccionada;
+    const esTipoSeleccionado = selectedEventType === "Mostrar todo" || act.tipo === selectedEventType;
+    return esMismaFecha && esTipoSeleccionado;
+  });
 
   const calcularPosicion = (inicio, fin) => {
     const hInicio = dayjs(inicio).hour() + dayjs(inicio).minute() / 60;
@@ -105,6 +150,19 @@ export default function Schedule() {
             </button>
           );
         })}
+        
+        <select
+          className="p-2"
+          value={selectedEventType}
+          onChange={(e) => setSelectedEventType(e.target.value)}
+        >
+          {tiposDeEvento.map((tipo) => (
+            <option key={tipo} value={tipo} className="bg-[#1E1E1E]">
+              {tipo}
+            </option>
+          ))}
+        </select>
+
       </div>
 
       <div className="overflow-x-auto">

@@ -4,9 +4,14 @@ import Footer from './components/Footer'
 import { Route, Routes } from 'react-router-dom'
 import {Home, Expo, Copa, Programa, Participa} from './components/pages'
 import ScrollToTop from './components/ScrollToTop';
-
+import { useEffect } from 'react'
 
 function App() {
+  useEffect(() => {
+    fetch("https://expofitwebserver.onrender.com/")
+      .then(res => console.log("Backend activado"))
+      .catch(err => console.error("Error al hacer ping al backend", err));
+  }, []);
   return (
     <>
       <div className='App'>

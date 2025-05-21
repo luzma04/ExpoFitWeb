@@ -17,7 +17,7 @@ export default function Participa() {
     {
       title: 'Reservar un Stand',
       content: (
-          <div className="space-y-8 px-4 py-8">
+          <div className="space-y-8 px-1 py-8">
             <p className="text-lg text-[#1E1E1E] max-w-3xl mx-auto text-justify">
               Los stands están diseñados para ofrecer máxima exposición y contacto
               con potenciales clientes y socios comerciales.
