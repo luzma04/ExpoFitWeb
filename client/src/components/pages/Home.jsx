@@ -16,6 +16,11 @@ const Home = () => {
     {'url': sliderPhoto3, 'title':'image'},
     {'url': sliderPhoto1, 'title':'image'}
   ];
+  const getDurationToTargetDate = () => {
+  const now = new Date();
+  const target = new Date('2025-06-14T00:00:00');
+  return target - now;
+  };
   
   return (
     <div className='home'>
@@ -34,7 +39,7 @@ const Home = () => {
         <div className='countdown-card'>
           <h2>14 Y 15 DE JUNIO</h2>
           <p>DOMO DEL CENTENARIO</p>
-          <Timer duration={3 * 24 * 60 * 60 * 1000}/>
+          <Timer duration={getDurationToTargetDate()}/>
         </div>
       </div>
 
