@@ -49,11 +49,29 @@ const Form = ({ categoriaDefault = 'Asistente', editable, onSubmit }) => {
   });
 
   const handleBuy = async () => {
-    const id = await createPreference();
-    if (id) {
-      setPreferenceId(id);
+  Swal.fire({
+    title: 'Preparando tu pago...',
+    text: 'Estamos generando el botón de pago',
+    allowOutsideClick: false,
+    didOpen: () => {
+      Swal.showLoading();
     }
+  });
+
+  const id = await createPreference();
+
+  if (id) {
+    setPreferenceId(id);
+    Swal.close();
+  } else {
+    Swal.fire({
+      title: 'Error',
+      text: 'No se pudo generar el botón de pago. Intenta nuevamente.',
+      icon: 'error',
+      confirmButtonText: 'Cerrar',
+    });
   }
+};
 
   const [formData, setFormData] = useState({
     nombre: '',
