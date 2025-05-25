@@ -1,5 +1,5 @@
-import React from 'react'
-import { useState } from 'react';
+import { useLocation } from "react-router-dom";
+import { useState, useEffect } from 'react';
 import { FaChevronDown } from "react-icons/fa";
 import FAQs from '../F&Qs.jsx';
 import Mapa from '../../assets/images/stands-map.png';
@@ -12,12 +12,43 @@ export default function Participa() {
   const toggle = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === "#form-expositor") {
+      setOpenIndex(0);
+      setTimeout(() => {
+        const el = document.getElementById("form-expositor");
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+    if (location.hash === "#form-sponsor") {
+      setOpenIndex(1);
+      setTimeout(() => {
+        const el = document.getElementById("form-sponsor");
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+    if (location.hash === "#form-copa") {
+      setOpenIndex(3);
+      setTimeout(() => {
+        const el = document.getElementById("form-copa");
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+  }, [location]);
 
   const sections = [
     {
       title: 'Reservar un Stand',
       content: (
-          <div className="space-y-8 px-1 py-8">
+          <div className="space-y-8 px-1 py-8" id="form-expositor">
             <p className="text-lg text-[#1E1E1E] max-w-3xl mx-auto text-justify">
               Los stands están diseñados para ofrecer máxima exposición y contacto
               con potenciales clientes y socios comerciales.
@@ -150,7 +181,7 @@ export default function Participa() {
     {
       title: 'Quiero ser sponsor del evento',
       content: (
-        <div className="text-[#1E1E1E] space-y-6">
+        <div className="text-[#1E1E1E] space-y-6" id="form-sponsor">
           <h3 className="text-[#F4004A] font-bold text-3xl">POSICIONÁ TU MARCA EN EL EVENTO</h3>
           <p className="leading-relaxed">
             Acompañanos como sponsor y obtené máxima visibilidad ante un público clave.
@@ -184,7 +215,7 @@ export default function Participa() {
               </li>
             </ul>
           </div>
-          <Form
+          <Form 
               categoriaDefault='Sponsor'
               editable={false}
               onSubmit={(data) => console.log(data)}
@@ -204,16 +235,19 @@ export default function Participa() {
           <h3 className="text-xl font-semibold text-[#1E1E1E] mt-8 text-center">
             ¡Explora el programa y las capacitaciones que tenemos para vos!
           </h3>
-          <button className="bg-[#98C61B] text-white m-2 px-4 py-2 rounded hover:text-[#1E1E1E]">
+          <a
+            href="/programa#disertantes"
+            className="bg-[#98C61B] text-white m-2 px-4 py-2 rounded hover:text-[#1E1E1E]"
+          >
             Ver capacitaciones
-          </button>
+          </a>
         </div>
       )
     },
     {
       title: 'Participar en la Copa Natural Shop',
       content: (
-        <div className="">
+        <div id="form-copa">
           <h3 className="text-2xl font-semibold text-[#98C61B]">
             Sumate a la 11° COPA NATURAL SHOP
           </h3>

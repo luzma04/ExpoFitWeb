@@ -1,9 +1,10 @@
-import React from 'react';
+import { useNavigate } from "react-router-dom";
 import Gallery from '../gallery'
 import photos from '../../assets/tools/expo-gallery.json'
 import { FaChevronDown } from "react-icons/fa";
 
 export default function Copa() {
+  const navigate = useNavigate();
   return (
     <>
       {/* Banner */}
@@ -45,7 +46,7 @@ promoviendo la gastronomía típica. En este sentido, el impacto trasciende lo d
 posiciona a la ciudad como un destino clave en la agenda nacional.
           </p>
         </div>
-        <button className="mt-8 bg-[#98C61B] text-white font-bold py-3 px-6 rounded-full shadow-md hover:bg-[#1E1E1E] transition duration-300">
+        <button onClick={() => navigate("/participa#form-copa")} className="mt-8 bg-[#98C61B] text-white font-bold py-3 px-6 rounded-full shadow-md hover:bg-[#1E1E1E] transition duration-300">
           Inscribite
         </button>
       </section>

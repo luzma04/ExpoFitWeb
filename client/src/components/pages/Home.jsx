@@ -1,4 +1,4 @@
-import React from 'react'
+import { Navigate, useNavigate } from 'react-router-dom'
 import '../../styles/Home.css'
 import Timer from '../Timer'
 import Stats from '../Stats'
@@ -21,6 +21,7 @@ const Home = () => {
   const target = new Date('2025-06-14T00:00:00');
   return target - now;
   };
+  const navigate = useNavigate();
   
   return (
     <div className='home'>
@@ -29,7 +30,7 @@ const Home = () => {
           <p>4ª EXPO</p>
           <h1>FITNESS Y SALUD<br/>NEA CHACO</h1>
           <p className='subtitle'>11° COPA NATURAL SHOP</p>
-          <button>¡Formá parte del evento!</button>
+          <button onClick={() => navigate("/participa")}>¡Formá parte del evento!</button>
         </div>
       </div>
 
@@ -51,7 +52,11 @@ const Home = () => {
               SOBRE EL EVENTO
             </h3>
             <p className="text-justify">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus saepe dolorem eos aut aspernatur natus rerum, possimus laudantium harum in. Nesciunt accusamus in nostrum. Quod doloribus aliquid veniam odio quaerat tempora quis distinctio natus beatae, nisi quisquam molestias rerum, ullam ducimus ipsa voluptatum quae neque veritatis. Facilis officiis iste magni quia ratione. Dolorem, quasi. Cupiditate iste laboriosam animi sunt ipsa, repellendus accusamus possimus excepturi praesentium, consequuntur necessitatibus omnis at mollitia sint aperiam nam eligendi neque? Vitae earum eos reiciendis aliquid sequi sapiente, maiores quas impedit necessitatibus!
+              La Expo Fitness y Salud NEA Chaco se ha consolidado como el principal punto de encuentro para la industria del fitness, la salud y el bienestar en el nordeste argentino.
+              En 2024 contamos con la participación de representantes de más de 8 provincias, demostrando
+              el alcance y la importancia de esta iniciativa.
+              Ahora, en su cuarta edición, este evento sigue creciendo en alcance e impacto, reuniendo a
+              comerciantes, fabricantes, distribuidores, gimnasios, entrenadores y entusiastas del sector.
             </p>
           </div>
           <div className="flex-1 p-4 flex justify-center items-center">
@@ -63,7 +68,7 @@ const Home = () => {
 
       <div
         className="min-h-[90vh] bg-cover bg-center bg-no-repeat flex flex-col md:flex-row justify-center items-center gap-8 p-8"
-        style={{ backgroundImage: "url('/images/black-texture-banner.webp')" }}
+        style={{ backgroundImage: "url('/images/white-background-texture.jpg')" }}
       >
         <div className="w-full md:w-1/2 p-4 bg-[#F4004A]/90 rounded-[2rem] shadow-lg">
           <iframe

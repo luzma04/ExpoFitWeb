@@ -1,9 +1,10 @@
-import React from 'react'
+import { useNavigate } from "react-router-dom";
 import { FaChevronDown, FaBullseye, FaHandshake, FaStar, FaUsers, FaBullhorn, FaNetworkWired, FaPiggyBank, FaRocket } from "react-icons/fa";
 import Gallery from '../gallery'
 import photos from '../../assets/tools/expo-gallery.json'
 
 function Expo() {
+    const navigate = useNavigate();
   return (
     <>
         <section className="relative">
@@ -35,7 +36,9 @@ function Expo() {
         {/* Texto inferior */}
         <section className="bg-white flex flex-col items-center px-4 py-12">
         <p className="text-[#1E1E1E] max-w-[950px] text-justify text-lg">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis consequuntur eveniet architecto officiis eligendi aliquam molestias, dolorum, repellendus modi ex esse? Eius eaque quod nihil debitis, porro quas beatae ducimus placeat eveniet quidem ut at corrupti perspiciatis esse, delectus totam voluptate, nostrum enim! Nobis optio quo corrupti soluta blanditiis eius.
+            La Expo Fitness y Salud NEA Chaco se ha consolidado como el principal punto de encuentro para la industria del fitness, la salud y el bienestar en el nordeste argentino.
+              En 2024 contamos con la participación de representantes de más de 8 provincias, demostrando
+              el alcance y la importancia de esta iniciativa.
         </p>
         </section>
 
@@ -155,10 +158,10 @@ function Expo() {
         </section>
 
         <section className="flex flex-col md:flex-row items-center justify-center m-10 gap-4">
-            <button className="w-full md:w-auto bg-[#98C61B] text-white font-bold py-3 px-6 rounded-full shadow-md hover:bg-[#1E1E1E] transition duration-300">
+            <button onClick={()=> navigate("/participa#form-expositor")} className="w-full md:w-auto bg-[#98C61B] text-white font-bold py-3 px-6 rounded-full shadow-md hover:bg-[#1E1E1E] transition duration-300">
                 Reservá tu Stand
             </button>
-            <button className="w-full md:w-auto bg-[#98C61B] text-white font-bold py-3 px-6 rounded-full shadow-md hover:bg-[#1E1E1E] transition duration-300">
+            <button onClick={() => navigate("/participa#form-sponsor")} className="w-full md:w-auto bg-[#98C61B] text-white font-bold py-3 px-6 rounded-full shadow-md hover:bg-[#1E1E1E] transition duration-300">
                 Sumate como Sponsor
             </button>
         </section>

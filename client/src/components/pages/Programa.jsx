@@ -2,8 +2,21 @@ import React from 'react'
 import Schedule from '../Schedule'
 import GridCards from '../GridCards.jsx';
 import { FaChevronDown } from "react-icons/fa";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 function Programa() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
   return (
     <>
       <section className="relative">
@@ -36,7 +49,7 @@ function Programa() {
           <Schedule/>
       </div>
       
-      <div className="bg-[#1E1E1E] p-3 flex flex-col justify-center">
+      <div className="bg-[#1E1E1E] p-3 flex flex-col justify-center" id='disertantes'>
         <h2
           className="font-bold text-center text-7xl sm:text-7xl md:text-7xl lg:text-7xl bg-gradient-to-r from-[#F4004A] via-[#FF0080] to-[#F4004A] bg-clip-text text-transparent uppercase"
           style={{ fontFamily: 'Manuka Condensed' }}
