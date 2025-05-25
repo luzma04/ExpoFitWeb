@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+import { db } from "../firebase";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 dayjs.extend(isSameOrBefore);
 
 const actividadesMock = [
@@ -86,15 +88,40 @@ const actividadesMock = [
   }
 ];
 
-const horas = Array.from({ length: 13 }, (_, i) => 8 + i);
+  
+
 
 export default function Schedule() {
+  const [actividades, setActividades] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [fechaSeleccionada, setFechaSeleccionada] = useState("2025-06-14");
   const [selectedEventType, setSelectedEventType] = useState("Mostrar todo");
 
-  const tiposDeEvento = ["Mostrar todo", ...new Set(actividadesMock.map((a) => a.tipo))];
+  const horas = Array.from({ length: 13 }, (_, i) => 8 + i);
+  
+  useEffect(() => {
+    const fetchActividades = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "actividades"));
+        const data = querySnapshot.docs.map(doc => doc.data());
+        setActividades(data);
+      } catch (error) {
+        console.error("Error al obtener actividades:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const actividadesDelDia = actividadesMock.filter((act) => {
+    fetchActividades();
+  }, []);
+
+  if (loading) {
+    return <div className="text-center m-5 text-gray-500">Cargando actividades...</div>;
+  }
+
+  const tiposDeEvento = ["Mostrar todo", ...new Set(actividades.map((a) => a.tipo))];
+
+  const actividadesDelDia = actividades.filter((act) => {
     const esMismaFecha = dayjs(act.inicio).format("YYYY-MM-DD") === fechaSeleccionada;
     const esTipoSeleccionado = selectedEventType === "Mostrar todo" || act.tipo === selectedEventType;
     return esMismaFecha && esTipoSeleccionado;
